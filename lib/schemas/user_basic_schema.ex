@@ -14,6 +14,8 @@ defmodule TestingEcto.Schemas.UserBasicSchema do
     field(:phone_number, :string)
   end
 
+  # it will always return an up to date list of fields as atoms e
+  # even when a new field is added
   defp all_fields do
     __MODULE__.__schema__(:fields)
   end
