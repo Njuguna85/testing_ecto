@@ -1,6 +1,5 @@
-defmodule TestSchemas.Schemas.UserBasicSchema2Test do
-  use ExUnit.Case
-  alias Ecto.Changeset
+defmodule TestSchemas.Schemas.UserBasicSchema3Test do
+  use TestingEcto.SchemaCase
   alias TestingEcto.Schemas.UserBasicSchema
 
   @expected_fields_with_types [
@@ -24,21 +23,6 @@ defmodule TestSchemas.Schemas.UserBasicSchema2Test do
         end
 
       assert MapSet.new(actual_fields_with_types) == MapSet.new(@expected_fields_with_types)
-    end
-  end
-
-  # returns a string-keyed map of valid parameters
-  # which are built dynamically based of the list of fields and types passed to it
-  defp valid_params(fields_with_types) do
-    valid_value_by_type = %{
-      date: fn -> to_string(Faker.Date.date_of_birth()) end,
-      float: fn -> :rand.uniform() * 10 end,
-      string: fn -> Faker.Lorem.word() end
-    }
-
-    # the anonymous functions yield realistically shape different values for the new field from Faker
-    for {field, type} <- fields_with_types, into: %{} do
-      {Atom.to_string(field), valid_value_by_type[type].()}
     end
   end
 
@@ -94,18 +78,6 @@ defmodule TestSchemas.Schemas.UserBasicSchema2Test do
         refute errors[field],
                "The optional field #{field} is required when it shouldn't be."
       end
-    end
-  end
-
-  defp invalid_params(field_with_types) do
-    invalid_value_by_type = %{
-      date: fn -> Faker.Lorem.word() end,
-      float: fn -> Faker.Lorem.word() end,
-      string: fn -> DateTime.utc_now() end
-    }
-
-    for {field, type} <- field_with_types, into: %{} do
-      {Atom.to_string(field), invalid_value_by_type[type].()}
     end
   end
 end
