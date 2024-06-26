@@ -4,7 +4,7 @@ defmodule TestingEcto.SchemaCase do
 
   # This is useful when there are a set of setup callbacks or a set of functions that should be shared between test modules.
 
-  # a using lock is used to execute code during compilation
+  # a using block is used to execute code during compilation
   using do
     quote do
       # We alias changeset into this case template because all future schema tests will need it
