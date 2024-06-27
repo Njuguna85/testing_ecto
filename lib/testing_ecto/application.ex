@@ -1,6 +1,7 @@
 defmodule TestingEcto.Application do
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
+
   @moduledoc false
 
   use Application
@@ -10,6 +11,7 @@ defmodule TestingEcto.Application do
     children = [
       # Starts a worker by calling: TestingEcto.Worker.start_link(arg)
       # {TestingEcto.Worker, arg}
+      TestingEcto.Repo
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
