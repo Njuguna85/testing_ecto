@@ -85,6 +85,10 @@ defmodule TestSchemas.Schemas.UserDatabaseSchemaTest do
     end
 
     test "error: returns error changeset when an email address is reused" do
+      # this tells the sandbox to provide an isolated database connection
+      # associated with the process id of the test
+      Ecto.Adapters.SQL.Sandbox.checkout(TestingEcto.Repo)
+
       {:ok, existing_user} =
         valid_params(@expected_fields_with_types)
         |> UserDatabaseSchema.changeset()

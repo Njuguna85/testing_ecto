@@ -15,6 +15,14 @@ defmodule TestingEcto.SchemaCase do
     end
   end
 
+  # every test that uses this case template will now run this code before the
+  # test executes as part of the setup steps
+  # setting the Sandbox to :manual sets each test to be able to request it own
+  # sandbox connection via the config/test.exs
+  setup _ do
+    Ecto.Adapters.SQL.Sandbox.mode(TestingEcto.Repo, :manual)
+  end
+
   # returns a string-keyed map of valid parameters
   # which are built dynamically based of the list of fields and types passed to it
   def valid_params(fields_with_types) do
