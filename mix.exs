@@ -33,7 +33,8 @@ defmodule TestingEcto.MixProject do
       {:ecto, "~> 3.1"},
       {:faker, "~> 0.18.0", only: [:test, :dev]},
       {:ecto_sql, "~> 3.4"},
-      {:postgrex, "~> 0.15.0"}
+      {:postgrex, "~> 0.15.0"},
+      {:ex_machina, "~> 2.4", only: :test}
     ]
   end
 end
